@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-pi-pico", "id": "pico", "top": 6.45, "left": 3.6, "attrs": {} },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": 128.8,
+      "left": -94.9,
+      "attrs": { "common": "anode" }
+    }
+  ],
+  "connections": [
+    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "pico:GP13", "rgb1:B", "green", [ "h-67.2", "v-144" ] ],
+    [ "pico:GP14", "rgb1:G", "green", [ "h0" ] ],
+    [ "pico:GP15", "rgb1:R", "green", [ "h0" ] ],
+    [ "pico:3V3", "rgb1:COM", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
