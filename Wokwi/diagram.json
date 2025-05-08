@@ -1,24 +1,39 @@
 {
   "version": 1,
-  "author": "Anonymous maker",
+  "author": "Sergey Rybakov",
   "editor": "wokwi",
   "parts": [
-    { "type": "wokwi-pi-pico", "id": "pico", "top": 6.45, "left": 3.6, "attrs": {} },
     {
-      "type": "wokwi-rgb-led",
-      "id": "rgb1",
-      "top": 128.8,
-      "left": -94.9,
-      "attrs": { "common": "anode" }
-    }
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 101.33,
+      "left": -93.34,
+      "attrs": { "env": "micropython-20220618-v1.19.1" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -75.47,
+      "left": -95.07,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-membrane-keypad", "id": "keypad1", "top": -50, "left": 274.4, "attrs": {} }
   ],
   "connections": [
-    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
-    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-    [ "pico:GP13", "rgb1:B", "green", [ "h-67.2", "v-144" ] ],
-    [ "pico:GP14", "rgb1:G", "green", [ "h0" ] ],
-    [ "pico:GP15", "rgb1:R", "green", [ "h0" ] ],
-    [ "pico:3V3", "rgb1:COM", "green", [ "h0" ] ]
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.2", "lcd1:GND", "black", [ "h-68.17", "v-283.46" ] ],
+    [ "esp:VIN", "lcd1:VCC", "red", [ "h-52.84", "v-279.63" ] ],
+    [ "lcd1:SDA", "esp:D21", "green", [ "h-26.86", "v100.56", "h159.23", "v88.14" ] ],
+    [ "lcd1:SCL", "esp:D22", "green", [ "h-10.74", "v110.11", "h127", "v40.19" ] ],
+    [ "esp:D12", "keypad1:R1", "green", [ "h318.74", "v27.47", "h9.6" ] ],
+    [ "keypad1:R2", "esp:D13", "green", [ "v9.6", "h-77.2" ] ],
+    [ "esp:D14", "keypad1:R3", "green", [ "h270.74", "v57.07" ] ],
+    [ "keypad1:R4", "esp:D27", "green", [ "v-76.8", "h-173" ] ],
+    [ "esp:D32", "keypad1:C1", "green", [ "h395.54", "v76.07" ] ],
+    [ "keypad1:C2", "esp:D33", "green", [ "v-144", "h-345.6", "v19.2" ] ],
+    [ "esp:D25", "keypad1:C3", "green", [ "h0" ] ],
+    [ "keypad1:C4", "esp:D26", "green", [ "v-115.2", "h-240.3" ] ]
   ],
   "dependencies": {}
 }
